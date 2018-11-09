@@ -1,0 +1,14 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: hystrix-turbine
+
+server:
+  port: 8081
+
+turbine:
+  appConfig: authentication,member
+  clusterNameExpression: "'default'"

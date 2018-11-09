@@ -1,0 +1,41 @@
+server:
+  port: 9000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: authentication
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/demo
+    username: postgres
+    password: postgres
+    tomcat:
+      initial-size: 3
+      min-idle: 3
+      max-idle: 5
+      max-active: 10
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+security:
+  oauth2:
+    authentication:
+      tokenValiditySeconds: 43200 # 12 hour
+      refreshTokenValiditySeconds: 2592000 # 30days
+    resource:
+      userInfoUri: http://localhost:8080/authentication/token/current
+    client:
+      clientId: authentication
+      clientSecret: test
+
+ribbon:
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
