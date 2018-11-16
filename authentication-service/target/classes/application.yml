@@ -21,6 +21,14 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    bus:
+      id: authentication
 
 security:
   oauth2:
@@ -39,3 +47,22 @@ ribbon:
   OkToRetryOnAllOperations: true
   ReadTimeout: 60000
   ConnectTimeout: 60000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          strategy: SEMAPHORE

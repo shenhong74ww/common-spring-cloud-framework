@@ -3,6 +3,7 @@ package com.middleware.demo.service.impl;
 import com.google.common.collect.Lists;
 import com.middleware.common.config.DynamicQueryFilterLogicType;
 import com.middleware.common.config.DynamicQueryOperators;
+import com.middleware.common.event.MemberPermissionChangedEvent;
 import com.middleware.common.exception.InvalidClientIdException;
 import com.middleware.common.model.PageResult;
 import com.middleware.common.model.TokenResult;
@@ -24,6 +25,7 @@ import com.middleware.demo.request.SignUpRequest;
 import com.middleware.demo.service.MemberService;
 import com.middleware.demo.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -51,6 +53,9 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public TokenResult signUp(SignUpRequest signUpRequest) {
@@ -156,6 +161,8 @@ public class MemberServiceImpl extends BaseServiceImpl implements MemberService 
                 .stream()
                 .map(this::member2memberVo)
                 .collect(Collectors.toList()));
+
+        applicationEventPublisher.publishEvent(new MemberPermissionChangedEvent(new Member(), "member", "authentication", new Long(1), MemberType.FREE.name(), MemberType.PAID.name()));
 
         return pageResult;
     }

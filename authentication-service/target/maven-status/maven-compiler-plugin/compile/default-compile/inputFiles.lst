@@ -23,5 +23,6 @@
 /home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/service/impl/ClientServiceImpl.java
 /home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/service/TokenService.java
 /home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/exception/authentication/InvalidRefreshTokenException.java
+/home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/event/listener/MemberPermissionChangedEventListner.java
 /home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/exception/authentication/PasswordMissingException.java
 /home/yt00803/Downloads/example/authentication-service/src/main/java/com/middleware/authentication/exception/authentication/UserNotExistsException.java

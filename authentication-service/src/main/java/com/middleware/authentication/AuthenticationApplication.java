@@ -4,6 +4,8 @@ import com.middleware.common.repository.CustomizedJpaRepositoryImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,6 +19,8 @@ import static com.middleware.common.constant.Constants.BASE_PACKAGE;
 @EnableFeignClients
 @EnableResourceServer
 @EnableJpaRepositories(repositoryBaseClass = CustomizedJpaRepositoryImpl.class)
+@RemoteApplicationEventScan(basePackages = {"com.middleware"})
+@EnableCircuitBreaker
 public class AuthenticationApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthenticationApplication.class, args);

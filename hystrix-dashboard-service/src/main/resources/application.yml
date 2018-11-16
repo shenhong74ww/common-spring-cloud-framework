@@ -1,0 +1,10 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: hystrix-dashboard
+
+server:
+  port: 8082

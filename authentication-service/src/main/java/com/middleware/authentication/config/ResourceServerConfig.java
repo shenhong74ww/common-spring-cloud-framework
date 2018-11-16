@@ -11,7 +11,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/token", "/swagger*/**", "/webjars*/**", "/v2/api-docs*/**").permitAll()
+                .antMatchers("/token", "/swagger*/**", "/webjars*/**", "/v2/api-docs*/**", "/actuator/hystrix.stream").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
     }
